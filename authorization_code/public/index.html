@@ -1,19 +1,9 @@
 <!doctype html>
 <html>
   <head>
-    <title>Example of the Authorization Code flow with Spotify</title>
+    <title>Smoodify</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-    <style type="text/css">
-      #login, #loggedin {
-        display: none;
-      }
-      .text-overflow {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        width: 500px;
-      }
-    </style>
+    <link rel="stylesheet" href="styles/style.css">
   </head>
 
   <body>
@@ -23,40 +13,69 @@
         <a href="/login" class="btn btn-primary">Log in with Spotify</a>
       </div>
       <div id="loggedin">
-        <div id="user-profile">
+        <div class="row justify-content-md-center">
+          <div id="user-profile">
+          </div>
+          <div id="oauth">
+          </div>
         </div>
-        <div id="oauth">
+        <div class="row justify-content-md-center pt-5">
+          <form>
+            <div class="form-group">
+              <label for="dance">Dancability</label><br>
+              <input type="range" name="dance" min="0.0" max="1.0" step="0.1">
+            </div>
+
+            <div class="form-group">
+              <label for="energy">Energy</label><br>
+              <input type="range" name="energy" min="0.0" max="1.0" step="0.1">
+            </div>
+
+            <div class="form-group">
+              <label for="instrumental">Instrumentalness</label><br>
+              <input type="range" name="instrumental" min="0.0" max="1.0" step="0.1">
+            </div>
+
+            <div class="form-group">
+              <label for="tempo">Tempo</label><br>
+              <input type="range" name="tempo" min="80" max="203" step="1">
+            </div>
+
+            <div class="form-group">
+              <label for="valence">Valence</label><br>
+              <input type="range" name="valence" min="0.0" max="1.0" step="0.1">
+            </div>
+          </form>
         </div>
-        <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
       </div>
     </div>
 
     <script id="user-profile-template" type="text/x-handlebars-template">
       <h1>Logged in as {{display_name}}</h1>
-      <div class="media">
-        <div class="pull-left">
-          <img class="media-object" width="150" src="{{images.0.url}}" />
-        </div>
-        <div class="media-body">
-          <dl class="dl-horizontal">
-            <dt>Display name</dt><dd class="clearfix">{{display_name}}</dd>
-            <dt>Id</dt><dd>{{id}}</dd>
-            <dt>Email</dt><dd>{{email}}</dd>
-            <dt>Spotify URI</dt><dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>
-            <dt>Link</dt><dd><a href="{{href}}">{{href}}</a></dd>
-            <dt>Profile Image</dt><dd class="clearfix"><a href="{{images.0.url}}">{{images.0.url}}</a></dd>
-            <dt>Country</dt><dd>{{country}}</dd>
-          </dl>
-        </div>
+      <!--<div class="media">-->
+        <!--<div class="pull-left">-->
+          <!--<img class="media-object" width="150" src="{{images.0.url}}" />-->
+        <!--</div>-->
+        <!--<div class="media-body">-->
+          <!--<dl class="dl-horizontal">-->
+            <!--<dt>Display name</dt><dd class="clearfix">{{display_name}}</dd>-->
+            <!--<dt>Id</dt><dd>{{id}}</dd>-->
+            <!--<dt>Email</dt><dd>{{email}}</dd>-->
+            <!--<dt>Spotify URI</dt><dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>-->
+            <!--<dt>Link</dt><dd><a href="{{href}}">{{href}}</a></dd>-->
+            <!--<dt>Profile Image</dt><dd class="clearfix"><a href="{{images.0.url}}">{{images.0.url}}</a></dd>-->
+            <!--<dt>Country</dt><dd>{{country}}</dd>-->
+          <!--</dl>-->
+        <!--</div>-->
       </div>
     </script>
 
     <script id="oauth-template" type="text/x-handlebars-template">
-      <h2>oAuth info</h2>
-      <dl class="dl-horizontal">
-        <dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>
-        <dt>Refresh token</dt><dd class="text-overflow">{{refresh_token}}></dd>
-      </dl>
+      <!--<h2>oAuth info</h2>-->
+      <!--<dl class="dl-horizontal">-->
+        <!--<dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>-->
+        <!--<dt>Refresh token</dt><dd class="text-overflow">{{refresh_token}}></dd>-->
+      <!--</dl>-->
     </script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
