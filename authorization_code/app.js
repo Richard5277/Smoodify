@@ -11,17 +11,20 @@ var express = require('express'); // Express web server framework
 var request = require('request'); // "Request" library
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
+var unirest = require('unirest');
 
 // personal credentials
 var config = require('../config.json');
 var client_id = config.CLIENT_ID; 
 var client_secret = config.CLIENT_SECRET; 
 var redirect_uri = config.REDIRECT_URI;
+
 /**
  * Generates a random string containing numbers and letters
  * @param  {number} length The length of the string
  * @return {string} The generated string
  */
+
 var generateRandomString = function(length) {
   var text = '';
   var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -141,6 +144,19 @@ app.get('/refresh_token', function(req, res) {
     }
   });
 });
+
+//retrieves a random word
+function getRandomWord() {
+    unirest.get("https://apifort-random-word-v1.p.mashape.com/v1/generate/randomword?count=1")
+        .header("X-Mashape-Key", "pI2PxJlneKmshN7Tg7w2aw47U59Fp14qvfDjsnN2eh6RtPO42R")
+        .header("Accept", "application/json")
+        .end(function (result) {
+            console.log(result.status, result.headers, result.body);
+        });
+
+}
+
+
 
 console.log('Listening on 8888');
 app.listen(8888);
