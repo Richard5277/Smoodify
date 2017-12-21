@@ -24,8 +24,17 @@ var spotifyApi = new SpotifyWebApi({
 	clientSecret : config.CLIENT_SECRET,
 	redirectUri : config.REDIRECT_URI
 });
-spotifyApi.setAccessToken('BQDkdM4bl1MSYp_LKJi3Gf6pFpxIvO6vp6KTjF5t7aIeNBEWpQZTHSQXnWLHPT11ujOQM_7slQNSfS3SgI6Lsr1s83VURHWyAAgP9Ks62ImLidPCoJHdO81esNthY_AoCToVKQjVXyyRKaaRJygagqUogii9_lG03g');
+spotifyApi.setAccessToken('BQDVXi5hdkjQwzUgoJGaYobfvoWVfwOyyzuyHZeEUDIQGq0yi4RGmn_X4yG80dA_LRHI7JR6bMqbWD4ggzwhUiF_r1a4PysBt4e1LNXI8aeV8avpETHKRYPOqnlyFlINFvbeOIUsdzduMvTMdNickIbNoS-HDGFEEg')
+spotifyApi.clientCredentialsGrant()
+  .then(function(data) {
+    console.log('The access token expires in ' + data.body['expires_in']);
+    console.log('The access token is ' + data.body['access_token']);
 
+    // Save the access token so that it's used in future calls
+    spotifyApi.setAccessToken(data.body['access_token']);
+  }, function(err) {
+    console.log('Something went wrong when retrieving an access token', err.message);
+  });
 /**
  * Generates a random string containing numbers and letters
  * @param  {number} length The length of the string
