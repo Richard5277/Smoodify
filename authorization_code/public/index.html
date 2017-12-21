@@ -1,144 +1,188 @@
 <!doctype html>
 <html>
-  <head>
-    <title>Smoodify</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles/style.css">
-  </head>
+<head>
+	<title>Smoodify</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="styles/style.css">
+</head>
 
-  <body>
-    <div class="container">
-      <div id="login">
-        <h1>Smoodify</h1>
-        <a href="/login" class="btn btn-primary">Log in with Spotify</a>
-      </div>
-      <div id="loggedin">
-        <div class="row justify-content-md-center">
-          <div id="user-profile">
-          </div>
-          <div id="oauth">
-          </div>
-        </div>
-        <div class="row justify-content-md-center pt-5">
-          <form>
-            <div class="form-group">
-              <label for="dance">Dancability</label><br>
-              <input type="range" name="dance" min="0.0" max="1.0" step="0.1">
-            </div>
+<body>
+	<div class="container">
+		<div id="login">
+			<h1>Smoodify</h1>
+			<a href="/login" class="btn btn-primary">Log in with Spotify</a>
+		</div>
+		<div id="loggedin">
+			<div class="row justify-content-md-center">
+				<div id="user-profile">
+				</div>
+				<div id="oauth">
+				</div>
+			</div>
+			<div class="row justify-content-md-center pt-5">
+				<form>
+					<div class="form-group">
+						<label for="dance">Dancability</label><br>
+						<input type="range" name="dance" min="0.0" max="1.0" step="0.1" id="dance">
+						<span id="dance_value">0.5</span>
+					</div>
 
-            <div class="form-group">
-              <label for="energy">Energy</label><br>
-              <input type="range" name="energy" min="0.0" max="1.0" step="0.1">
-            </div>
+					<div class="form-group">
+						<label for="energy">Energy</label><br>
+						<input type="range" name="energy" min="0.0" max="1.0" step="0.1" id="energy">
+						<span id="energy_value">0.5</span>
+					</div>
 
-            <div class="form-group">
-              <label for="instrumental">Instrumentalness</label><br>
-              <input type="range" name="instrumental" min="0.0" max="1.0" step="0.1">
-            </div>
+					<div class="form-group">
+						<label for="instrumental">Instrumentalness</label><br>
+						<input type="range" name="instrumental" min="0.0" max="1.0" step="0.1" id="instrumental">
+						<span id="instrumental_value">0.5</span>
+					</div>
 
-            <div class="form-group">
-              <label for="tempo">Tempo</label><br>
-              <input type="range" name="tempo" min="80" max="203" step="1">
-            </div>
+					<div class="form-group">
+						<label for="tempo">Tempo</label><br>
+						<input type="range" name="tempo" min="80" max="203" step="1" id="tempo">
+						<span id="tempo_value">142</span>
+					</div>
 
-            <div class="form-group">
-              <label for="valence">Valence</label><br>
-              <input type="range" name="valence" min="0.0" max="1.0" step="0.1">
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+					<div class="form-group">
+						<label for="valence">Valence</label><br>
+						<input type="range" name="valence" min="0.0" max="1.0" step="0.1" id="valence">
+						<span id="valence_value">0.5</span>
+					</div>
+				</form>
+			</div>
+			<div>
+				Search For Word: <input type="text" name="word" placeholder="LOVE" id="word"><br>
+				<button id="getSongsByWord">Get Songs By Word</button>
+				<h2>ALL SONGS</h2>
+				<div id="allSongs"></div>
 
-    <script id="user-profile-template" type="text/x-handlebars-template">
-      <h1>Logged in as {{display_name}}</h1>
-      <!--<div class="media">-->
-        <!--<div class="pull-left">-->
-          <!--<img class="media-object" width="150" src="{{images.0.url}}" />-->
-        <!--</div>-->
-        <!--<div class="media-body">-->
-          <!--<dl class="dl-horizontal">-->
-            <!--<dt>Display name</dt><dd class="clearfix">{{display_name}}</dd>-->
-            <!--<dt>Id</dt><dd>{{id}}</dd>-->
-            <!--<dt>Email</dt><dd>{{email}}</dd>-->
-            <!--<dt>Spotify URI</dt><dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>-->
-            <!--<dt>Link</dt><dd><a href="{{href}}">{{href}}</a></dd>-->
-            <!--<dt>Profile Image</dt><dd class="clearfix"><a href="{{images.0.url}}">{{images.0.url}}</a></dd>-->
-            <!--<dt>Country</dt><dd>{{country}}</dd>-->
-          <!--</dl>-->
-        <!--</div>-->
-      </div>
-    </script>
+			</div>
+		</div>
+	</div>
 
-    <script id="oauth-template" type="text/x-handlebars-template">
-      <!--<h2>oAuth info</h2>-->
-      <!--<dl class="dl-horizontal">-->
-        <!--<dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>-->
-        <!--<dt>Refresh token</dt><dd class="text-overflow">{{refresh_token}}></dd>-->
-      <!--</dl>-->
-    </script>
+	<script id="user-profile-template" type="text/x-handlebars-template">
+		<h1>Logged in as {{display_name}}</h1>
+		<!--<div class="media">-->
+			<!--<div class="pull-left">-->
+				<!--<img class="media-object" width="150" src="{{images.0.url}}" />-->
+				<!--</div>-->
+				<!--<div class="media-body">-->
+					<!--<dl class="dl-horizontal">-->
+						<!--<dt>Display name</dt><dd class="clearfix">{{display_name}}</dd>-->
+						<!--<dt>Id</dt><dd>{{id}}</dd>-->
+						<!--<dt>Email</dt><dd>{{email}}</dd>-->
+						<!--<dt>Spotify URI</dt><dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>-->
+						<!--<dt>Link</dt><dd><a href="{{href}}">{{href}}</a></dd>-->
+						<!--<dt>Profile Image</dt><dd class="clearfix"><a href="{{images.0.url}}">{{images.0.url}}</a></dd>-->
+						<!--<dt>Country</dt><dd>{{country}}</dd>-->
+						<!--</dl>-->
+						<!--</div>-->
+					</div>
+				</script>
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script>
-      (function() {
+				<script id="oauth-template" type="text/x-handlebars-template">
+					<!--<h2>oAuth info</h2>-->
+					<!--<dl class="dl-horizontal">-->
+						<!--<dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>-->
+						<!--<dt>Refresh token</dt><dd class="text-overflow">{{refresh_token}}></dd>-->
+						<!--</dl>-->
+					</script>
+
+					<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
+					<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+					<script>
+						(function() {
+
+      	//////////////////////////////////////////////////////////////////////////////////////
+      	//////////////////////////////////////////////////////////////////////////////////////
+      	$( document ).ready(function () {
+      		
+      		$("#dance").on("input change", function() { $('#dance_value')[0].innerHTML = $('#dance')[0].value });
+      		$("#energy").on("input change", function() { $('#energy_value')[0].innerHTML = $('#energy')[0].value });
+      		$("#instrumental").on("input change", function() { $('#instrumental_value')[0].innerHTML = $('#instrumental')[0].value });
+      		$("#tempo").on("input change", function() { $('#tempo_value')[0].innerHTML = $('#tempo')[0].value });
+      		$("#valence").on("input change", function() { $('#valence_value')[0].innerHTML = $('#valence')[0].value });
+
+      		document.getElementById('getSongsByWord').addEventListener('click', function() {
+      			console.log('get songs by word >> ', $('#word')[0].value)
+      			var word = $('#word')[0].value
+      			$.ajax({
+      				url: '/getSongsByWord?word=' + word,
+      				data: {
+
+      				}
+      			}).done(function(data) {
+      				$.each(JSON.parse(data), function(i, obj) {
+					  $('#allSongs').append('<p>' + obj.album.name + '</p>')
+					})
+
+      			})
+      		}, false)
+
+      	})
+
+    	//////////////////////////////////////////////////////////////////////////////////////
+      	//////////////////////////////////////////////////////////////////////////////////////
 
         /**
          * Obtains parameters from the hash of the URL
          * @return Object
          */
-        function getHashParams() {
-          var hashParams = {};
-          var e, r = /([^&;=]+)=?([^&;]*)/g,
-              q = window.location.hash.substring(1);
-          while ( e = r.exec(q)) {
-             hashParams[e[1]] = decodeURIComponent(e[2]);
-          }
-          return hashParams;
-        }
+         function getHashParams() {
+         	var hashParams = {};
+         	var e, r = /([^&;=]+)=?([^&;]*)/g,
+         	q = window.location.hash.substring(1);
+         	while ( e = r.exec(q)) {
+         		hashParams[e[1]] = decodeURIComponent(e[2]);
+         	}
+         	return hashParams;
+         }
 
-        var userProfileSource = document.getElementById('user-profile-template').innerHTML,
-            userProfileTemplate = Handlebars.compile(userProfileSource),
-            userProfilePlaceholder = document.getElementById('user-profile');
+         var userProfileSource = document.getElementById('user-profile-template').innerHTML,
+         userProfileTemplate = Handlebars.compile(userProfileSource),
+         userProfilePlaceholder = document.getElementById('user-profile');
 
-        var oauthSource = document.getElementById('oauth-template').innerHTML,
-            oauthTemplate = Handlebars.compile(oauthSource),
-            oauthPlaceholder = document.getElementById('oauth');
+         var oauthSource = document.getElementById('oauth-template').innerHTML,
+         oauthTemplate = Handlebars.compile(oauthSource),
+         oauthPlaceholder = document.getElementById('oauth');
 
-        var params = getHashParams();
+         var params = getHashParams();
 
-        var access_token = params.access_token,
-            refresh_token = params.refresh_token,
-            error = params.error;
+         var access_token = params.access_token,
+         refresh_token = params.refresh_token,
+         error = params.error;
 
-        if (error) {
-          alert('There was an error during the authentication');
-        } else {
-          if (access_token) {
+         if (error) {
+         	alert('There was an error during the authentication');
+         } else {
+         	if (access_token) {
             // render oauth info
             oauthPlaceholder.innerHTML = oauthTemplate({
-              access_token: access_token,
-              refresh_token: refresh_token
+            	access_token: access_token,
+            	refresh_token: refresh_token
             });
 
             $.ajax({
-                url: 'https://api.spotify.com/v1/me',
-                headers: {
-                  'Authorization': 'Bearer ' + access_token
-                },
-                success: function(response) {
-                  userProfilePlaceholder.innerHTML = userProfileTemplate(response);
+            	url: 'https://api.spotify.com/v1/me',
+            	headers: {
+            		'Authorization': 'Bearer ' + access_token
+            	},
+            	success: function(response) {
+            		userProfilePlaceholder.innerHTML = userProfileTemplate(response);
 
-                  $('#login').hide();
-                  $('#loggedin').show();
-                }
+            		$('#login').hide();
+            		$('#loggedin').show();
+            	}
             });
-          } else {
+        } else {
               // render initial screen
               $('#login').show();
               $('#loggedin').hide();
           }
 
+/*
           document.getElementById('obtain-new-token').addEventListener('click', function() {
             $.ajax({
               url: '/refresh_token',
@@ -153,9 +197,12 @@
               });
             });
           }, false);
-        }
-      })();
-    </script>
-  </body>
+          */
+
+      }
+  })();
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</body>
 </html>
 
