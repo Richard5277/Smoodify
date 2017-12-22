@@ -62,8 +62,22 @@ p {
     margin-bottom: 4em;
 }
 
+.slider-label-left {
+    color: #fff;
+    position: absolute;
+    margin-top: 1.5em;
+    left: 9em;
+}
+
+.slider-label-right {
+    color: #fff;
+    position: absolute;
+    margin-top: 1.5em;
+    right: 9em;
+}
+
 .form-group {
-    margin-top: 4em;
+    margin-top: 8em;
 }
 
 .form-group:first-of-type {
