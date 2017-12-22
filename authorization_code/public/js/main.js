@@ -12,7 +12,9 @@ $( document ).ready(function () {
     document.getElementById('getSongsByWord').addEventListener('click', function() {
         console.log(' << get songs by word >> ')
         $.ajax({
-            url: '/getSongsByWord'
+            url: '/getSongsByWord?word=' + word,
+            data: {
+            }
         }).done(function(data) {
             $.each(JSON.parse(data), function(i, obj) {
                 console.log(i)
