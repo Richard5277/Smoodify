@@ -9,48 +9,54 @@
 <body>
 	<div class="container">
 		<div id="login">
-			<h1>Smoodify</h1>
-			<a href="/login" class="btn btn-primary">Log in with Spotify</a>
-		</div>
-		<div id="loggedin">
-			<div class="row justify-content-md-center">
-				<div id="user-profile">
-				</div>
-				<div id="oauth">
+			<div class="row mt-5">
+				<div class="col-12 text-center mt-5">
+					<h1>Smoodify</h1>
+					<a href="/login" class="btn btn-primary mt-5">Log in with Spotify</a>
 				</div>
 			</div>
+		</div>
+		<div id="loggedin">
+			<div class="row justify-content-md-center mt-5">
+				<h1>Smoodify</h1>
+
+				<div id="user-profile"></div>
+				<div id="oauth"></div>
+			</div>
 			<div class="row justify-content-md-center pt-5">
-				<form>
-					<div class="form-group">
-						<label for="dance">Dancability</label><br>
-						<input type="range" name="dance" min="0.0" max="1.0" step="0.1" id="dance">
-						<span id="dance_value">0.5</span>
-					</div>
+				<div class="col-12 text-center">
+					<form>
+						<div class="form-group">
+							<label for="dance">Dancability</label><br>
+							<input type="range" name="dance" min="0.0" max="1.0" step="0.1" id="dance">
+							<span id="dance_value">0.5</span>
+						</div>
 
-					<div class="form-group">
-						<label for="energy">Energy</label><br>
-						<input type="range" name="energy" min="0.0" max="1.0" step="0.1" id="energy">
-						<span id="energy_value">0.5</span>
-					</div>
+						<div class="form-group">
+							<label for="energy">Energy</label><br>
+							<input type="range" name="energy" min="0.0" max="1.0" step="0.1" id="energy">
+							<span id="energy_value">0.5</span>
+						</div>
 
-					<div class="form-group">
-						<label for="instrumental">Instrumentalness</label><br>
-						<input type="range" name="instrumental" min="0.0" max="1.0" step="0.1" id="instrumental">
-						<span id="instrumental_value">0.5</span>
-					</div>
+						<div class="form-group">
+							<label for="instrumental">Instrumentalness</label><br>
+							<input type="range" name="instrumental" min="0.0" max="1.0" step="0.1" id="instrumental">
+							<span id="instrumental_value">0.5</span>
+						</div>
 
-					<div class="form-group">
-						<label for="tempo">Tempo</label><br>
-						<input type="range" name="tempo" min="80" max="203" step="1" id="tempo">
-						<span id="tempo_value">142</span>
-					</div>
+						<div class="form-group">
+							<label for="tempo">Tempo</label><br>
+							<input type="range" name="tempo" min="80" max="203" step="1" id="tempo">
+							<span id="tempo_value">142</span>
+						</div>
 
-					<div class="form-group">
-						<label for="valence">Valence</label><br>
-						<input type="range" name="valence" min="0.0" max="1.0" step="0.1" id="valence">
-						<span id="valence_value">0.5</span>
-					</div>
-				</form>
+						<div class="form-group">
+							<label for="valence">Valence</label><br>
+							<input type="range" name="valence" min="0.0" max="1.0" step="0.1" id="valence">
+							<span id="valence_value">0.5</span>
+						</div>
+					</form>
+				</div>
 			</div>
 			<div>
 				Search For Word: <input type="text" name="word" placeholder="LOVE" id="word"><br>
@@ -63,7 +69,7 @@
 	</div>
 
 	<script id="user-profile-template" type="text/x-handlebars-template">
-		<h1>Logged in as {{display_name}}</h1>
+		<!--<h1>Smoodify</h1>-->
 		<!--<div class="media">-->
 			<!--<div class="pull-left">-->
 				<!--<img class="media-object" width="150" src="{{images.0.url}}" />-->
@@ -79,21 +85,20 @@
 						<!--<dt>Country</dt><dd>{{country}}</dd>-->
 						<!--</dl>-->
 						<!--</div>-->
-					</div>
-				</script>
+					<!--</div>-->
+	</script>
 
-				<script id="oauth-template" type="text/x-handlebars-template">
-					<!--<h2>oAuth info</h2>-->
-					<!--<dl class="dl-horizontal">-->
-						<!--<dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>-->
-						<!--<dt>Refresh token</dt><dd class="text-overflow">{{refresh_token}}></dd>-->
-						<!--</dl>-->
-					</script>
-
-					<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
-					<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-					<script>
-						(function() {
+	<script id="oauth-template" type="text/x-handlebars-template">
+			<!--<h2>oAuth info</h2>-->
+			<!--<dl class="dl-horizontal">-->
+				<!--<dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>-->
+				<!--<dt>Refresh token</dt><dd class="text-overflow">{{refresh_token}}></dd>-->
+				<!--</dl>-->
+	</script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script>
+		(function() {
 
         /**
          * Obtains parameters from the hash of the URL
@@ -168,11 +173,12 @@
           }, false);
           */
 
-      }
-  })();
-</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="js/main.js"></script>
+		 }
+		})();
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js/main.js"></script>
+
 </body>
 </html>
 
