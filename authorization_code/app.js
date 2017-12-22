@@ -11,6 +11,7 @@ var express = require('express'); // Express web server framework
 var request = require('request'); // "Request" library
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
+var unirest = require('unirest');
 
 // personal credentials
 var config = require('../config.json');
@@ -24,17 +25,17 @@ var spotifyApi = new SpotifyWebApi({
 	clientSecret : config.CLIENT_SECRET,
 	redirectUri : config.REDIRECT_URI
 });
-spotifyApi.setAccessToken('BQDVXi5hdkjQwzUgoJGaYobfvoWVfwOyyzuyHZeEUDIQGq0yi4RGmn_X4yG80dA_LRHI7JR6bMqbWD4ggzwhUiF_r1a4PysBt4e1LNXI8aeV8avpETHKRYPOqnlyFlINFvbeOIUsdzduMvTMdNickIbNoS-HDGFEEg')
+spotifyApi.setAccessToken(config.ACCESS_TOKEN)
 spotifyApi.clientCredentialsGrant()
-  .then(function(data) {
-    console.log('The access token expires in ' + data.body['expires_in']);
-    console.log('The access token is ' + data.body['access_token']);
+.then(function(data) {
+	console.log('The access token expires in ' + data.body['expires_in']);
+	console.log('The access token is ' + data.body['access_token']);
 
     // Save the access token so that it's used in future calls
     spotifyApi.setAccessToken(data.body['access_token']);
-  }, function(err) {
-    console.log('Something went wrong when retrieving an access token', err.message);
-  });
+}, function(err) {
+	console.log('Something went wrong when retrieving an access token', err.message);
+});
 /**
  * Generates a random string containing numbers and letters
  * @param  {number} length The length of the string
@@ -136,45 +137,69 @@ spotifyApi.clientCredentialsGrant()
   }
 });
 
-//  app.get('/refresh_token', function(req, res) {
-
-//   // requesting access token from refresh token
-//   var refresh_token = req.query.refresh_token;
-//   var authOptions = {
-//   	url: 'https://accounts.spotify.com/api/token',
-//   	headers: { 'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64')) },
-//   	form: {
-//   		grant_type: 'refresh_token',
-//   		refresh_token: refresh_token
-//   	},
-//   	json: true
-//   };
-
-//   request.post(authOptions, function(error, response, body) {
-//   	if (!error && response.statusCode === 200) {
-//   		var access_token = body.access_token;
-//   		res.send({
-//   			'access_token': access_token
-//   		});
-//   	}
-//   });
-// });
-
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 app.get('/getSongsByWord', function(req,res) {
-	console.log("=======================================\nrequest query >>", req.query.word)
-	spotifyApi.searchTracks(req.query.word)
+
+// >>
+unirest.get("https://apifort-random-word-v1.p.mashape.com/v1/generate/randomword?count=1")
+.header("X-Mashape-Key", "pI2PxJlneKmshN7Tg7w2aw47U59Fp14qvfDjsnN2eh6RtPO42R")
+.header("Accept", "application/json")
+.end(function (result) {
+	// var randomWord = (result.body.result).toString().length > 5 ? (result.body.result).toString() : (result.body.result).toString().slice(0,4)
+	var randomWord = (result.body.result).toString()
+	console.log("😈 =========== getting random word >> ", randomWord);
+      // >>
+      spotifyApi.searchTracks(randomWord)
+      .then(function(data) {
+      	console.log(data)
+      	var allData = []
+      	var allTracks = data.body.tracks.items
+      	allTracks.forEach(function(element) {
+
+      		spotifyApi.getAudioFeaturesForTrack(element.id)
+      		.then(function(data) {
+      			allData.push({ name: element.name, features: data.body})
+      			if ( allData.length == allTracks.length ) {
+      				console.log("Finish Fetching All Data");
+      				res.send(JSON.stringify(allData))
+      			}
+      		}, function(err) {
+      			done(err);
+      		});
+      	})
+      }, function(err) {
+      	console.error(err);
+      })
+      // <<
+
+  })
+// <<
+/*
+	spotifyApi.searchTracks('name='+req.query.word)
 	.then(function(data) {
-		res.send(JSON.stringify(data.body.tracks.items))
-	}, function(err) {
-		console.error(err);
-	})
+    var allData = []
+    var allTracks = data.body.tracks.items
+    allTracks.forEach(function(element) {
+      
+      spotifyApi.getAudioFeaturesForTrack(element.id)
+      .then(function(data) {
+        allData.push({ name: element.name, features: data.body})
+        if ( allData.length == allTracks.length ) {
+          console.log("Finish Fetching All Data");
+          res.send(JSON.stringify(allData))
+        }
+      }, function(err) {
+        done(err);
+      });
+    })
+  }, function(err) {
+    console.error(err);
+  })
+  */
 })
 
 
 console.log('Listening on 8888');
 app.listen(8888);
 
-// git branch testing >> Richard
