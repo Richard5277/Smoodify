@@ -10,15 +10,16 @@ $( document ).ready(function () {
     $("#valence").on("input change", function() { $('#valence_value')[0].innerHTML = $('#valence')[0].value });
 
     document.getElementById('getSongsByWord').addEventListener('click', function() {
-        console.log('get songs by word >> ', $('#word')[0].value)
-        var word = $('#word')[0].value
+        console.log(' << get songs by word >> ')
         $.ajax({
             url: '/getSongsByWord?word=' + word,
             data: {
             }
         }).done(function(data) {
             $.each(JSON.parse(data), function(i, obj) {
-                $('#allSongs').append('<p>' + obj.album.name + '</p>')
+                console.log(i)
+                console.log(obj)
+                $('#allSongs').append('<p>' + obj.name + '</p>')
             })
 
         })
