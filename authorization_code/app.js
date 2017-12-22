@@ -64,7 +64,7 @@ spotifyApi.clientCredentialsGrant()
  	res.cookie(stateKey, state);
 
   // your application requests authorization
-  var scope = 'user-read-private user-read-email';
+  var scope = 'user-read-private user-read-email playlist-modify-private playlist-modify-public';
   res.redirect('https://accounts.spotify.com/authorize?' +
   	querystring.stringify({
   		response_type: 'code',
@@ -139,6 +139,17 @@ spotifyApi.clientCredentialsGrant()
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// var userID = data.body.id;
+//
+// app.get('/createAPlaylist', function(data) {
+//     spotifyApi.createPlaylist('larrbd', 'My Cool Playlist', { 'public' : false })
+//         .then(function(data) {
+//             console.log('Created playlist!');
+//         }, function(err) {
+//             console.log('Something went wrong!', err);
+//         });
+// });
+
 app.get('/getSongsByWord', function(req,res) {
 
 // >>
@@ -198,6 +209,7 @@ unirest.get("https://apifort-random-word-v1.p.mashape.com/v1/generate/randomword
   })
   */
 })
+
 
 
 console.log('Listening on 8888');
