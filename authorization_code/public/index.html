@@ -3,6 +3,7 @@
 <head>
 	<title>Smoodify</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 	<link rel="stylesheet" href="styles/style.css">
 </head>
 
@@ -12,7 +13,7 @@
 			<div class="row mt-5">
 				<div class="col-12 text-center mt-5">
 					<h1>Smoodify</h1>
-					<a href="/login" class="btn btn-primary mt-5">Log in with Spotify</a>
+					<a href="/login" class="btn btn-primary styled-btn mt-5">Log in with Spotify</a>
 				</div>
 			</div>
 		</div>
@@ -27,34 +28,73 @@
 				<div class="col-12 text-center">
 					<form>
 						<div class="form-group">
-							<label for="dance">Dancability</label><br>
-							<input type="range" name="dance" min="0.0" max="1.0" step="0.1" id="dance">
-							<span id="dance_value">0.5</span>
+							<p>
+								<label for="amt1">Dancability:</label>
+								<input type="text" id="amt1" readonly style="border:0; color:#f6931f; font-weight:bold;">
+							</p>
+
+							<div class="flat-slider" id="dancability"></div>
 						</div>
 
 						<div class="form-group">
-							<label for="energy">Energy</label><br>
-							<input type="range" name="energy" min="0.0" max="1.0" step="0.1" id="energy">
-							<span id="energy_value">0.5</span>
+							<p>
+								<label for="amt2">Energy:</label>
+								<input type="text" id="amt2" readonly style="border:0; color:#f6931f; font-weight:bold;">
+							</p>
+
+							<div class="flat-slider" id="energy"></div>
 						</div>
 
 						<div class="form-group">
-							<label for="instrumental">Instrumentalness</label><br>
-							<input type="range" name="instrumental" min="0.0" max="1.0" step="0.1" id="instrumental">
-							<span id="instrumental_value">0.5</span>
+							<p>
+								<label for="amt3">Instrumentalness:</label>
+								<input type="text" id="amt3" readonly style="border:0; color:#f6931f; font-weight:bold;">
+							</p>
+
+							<div class="flat-slider" id="instrumental"></div>
 						</div>
 
 						<div class="form-group">
-							<label for="tempo">Tempo</label><br>
-							<input type="range" name="tempo" min="80" max="203" step="1" id="tempo">
-							<span id="tempo_value">142</span>
+							<p>
+								<label for="amt4">Tempo:</label>
+								<input type="text" id="amt4" readonly style="border:0; color:#f6931f; font-weight:bold;">
+							</p>
+
+							<div class="flat-slider" id="tempo"></div>
 						</div>
 
 						<div class="form-group">
-							<label for="valence">Valence</label><br>
-							<input type="range" name="valence" min="0.0" max="1.0" step="0.1" id="valence">
-							<span id="valence_value">0.5</span>
+							<p>
+								<label for="amt5">Valance:</label>
+								<input type="text" id="amt5" readonly style="border:0; color:#f6931f; font-weight:bold;">
+							</p>
+
+							<div class="flat-slider" id="valance"></div>
 						</div>
+
+						<!--<div class="form-group">-->
+							<!--<label for="dance">Dancability</label><br>-->
+							<!--<input type="range" name="dance" min="0.0" max="1.0" step="0.1" id="dance">-->
+							<!--<span id="dance_value">0.5</span>-->
+						<!--</div>-->
+
+						<!--<div class="form-group">-->
+							<!--<label for="instrumental">Instrumentalness</label><br>-->
+							<!--<input type="range" name="instrumental" min="0.0" max="1.0" step="0.1" id="instrumental">-->
+							<!--<span id="instrumental_value">0.5</span>-->
+						<!--</div>-->
+
+						<!--<div class="form-group">-->
+							<!--<label for="tempo">Tempo</label><br>-->
+							<!--<input type="range" name="tempo" min="80" max="203" step="1" id="tempo">-->
+							<!--<span id="tempo_value">142</span>-->
+						<!--</div>-->
+
+						<!--<div class="form-group">-->
+							<!--<label for="valence">Valence</label><br>-->
+							<!--<input type="range" name="valence" min="0.0" max="1.0" step="0.1" id="valence">-->
+							<!--<span id="valence_value">0.5</span>-->
+						<!--</div>-->
 					</form>
 				</div>
 			</div>
@@ -177,6 +217,7 @@
 		})();
 	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src="js/main.js"></script>
 
 </body>

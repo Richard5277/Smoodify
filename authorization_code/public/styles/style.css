@@ -7,3 +7,68 @@
     white-space: nowrap;
     width: 500px;
 }
+.styled-btn {
+    border-radius: 40px;
+    padding: 15px;
+}
+
+/*range slider*/
+
+.flat-slider.ui-corner-all,
+.flat-slider .ui-corner-all {
+    border-radius: 0;
+}
+
+.flat-slider.ui-slider {
+    border: 0;
+    background: #8f8b8b;
+    border-radius: 7px;
+}
+
+.flat-slider.ui-slider-horizontal {
+    height: 3px;
+}
+
+.flat-slider.ui-slider-vertical {
+    height: 15em;
+    width: 3px;
+}
+
+.flat-slider .ui-slider-handle {
+    width: 20px;
+    height: 20px;
+    background: #1f2bb1;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+.flat-slider.ui-slider-horizontal .ui-slider-handle {
+    top: 50%;
+    margin-top: -10px;
+}
+
+.flat-slider.ui-slider-vertical .ui-slider-handle {
+    left: 50%;
+    margin-left: -10px;
+}
+
+.flat-slider .ui-slider-handle:hover {
+    opacity: .8;
+}
+
+.flat-slider .ui-slider-range {
+    border: 0;
+    border-radius: 7;
+    background: #9cff99;
+}
+
+.flat-slider.ui-slider-horizontal .ui-slider-range {
+    top: 0;
+    height: 3px;
+}
+
+.flat-slider.ui-slider-vertical .ui-slider-range {
+    left: 0;
+    width: 3px;
+}
