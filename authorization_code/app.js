@@ -11,6 +11,7 @@ var express = require('express'); // Express web server framework
 var request = require('request'); // "Request" library
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
+var unirest = require('unirest');
 
 // personal credentials
 var config = require('../config.json');
@@ -161,16 +162,43 @@ spotifyApi.clientCredentialsGrant()
 // });
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// function getRandomWord() {
+//     unirest.get("https://apifort-random-word-v1.p.mashape.com/v1/generate/randomword?count=1")
+//         .header("X-Mashape-Key", "pI2PxJlneKmshN7Tg7w2aw47U59Fp14qvfDjsnN2eh6RtPO42R")
+//         .header("Accept", "application/json")
+//         .end(function (result) {
+//             //console.log(result.status, result.headers, result.body);
+//              return result.body.result;
+//         });
+//
+// }
+
 
 app.get('/getSongsByWord', function(req,res) {
-	console.log("=======================================\nrequest query >>", req.query.word)
-	spotifyApi.searchTracks(req.query.word)
-	.then(function(data) {
-		res.send(JSON.stringify(data.body.tracks.items))
-	}, function(err) {
-		console.error(err);
-	})
+	console.log("working");
+
+	unirest.get("https://apifort-random-word-v1.p.mashape.com/v1/generate/randomword?count=1")
+        .header("X-Mashape-Key", "pI2PxJlneKmshN7Tg7w2aw47U59Fp14qvfDjsnN2eh6RtPO42R")
+        .header("Accept", "application/json")
+        .end(function (result) {
+            //console.log(result.status, result.headers, result.body);
+            var randomWord = (result.body.result).toString();
+            var randomWordTrimmed = randomWord.slice(0,4);
+
+            spotifyApi.searchTracks(randomWord)
+                .then(function(data) {
+                    console.log(randomWord);
+                    console.log(randomWordTrimmed);
+
+                    res.send(JSON.stringify(data.body.tracks.items))
+                }, function(err) {
+                    console.error(err);
+                })
+        });
+
+
+
 })
 
 
