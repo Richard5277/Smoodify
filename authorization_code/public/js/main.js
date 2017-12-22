@@ -3,6 +3,13 @@
  */
 $( document ).ready(function () {
 
+    var loader = $("#loadContainer");
+    var isLoading = false;
+
+
+    loader.hide();
+
+
     $("#dance").on("input change", function() { $('#dance_value')[0].innerHTML = $('#dance')[0].value });
     $("#energy").on("input change", function() { $('#energy_value')[0].innerHTML = $('#energy')[0].value });
     $("#valence").on("input change", function() { $('#valence_value')[0].innerHTML = $('#valence')[0].value });
@@ -19,6 +26,7 @@ $( document ).ready(function () {
 
     document.getElementById('getSongsByWord').addEventListener('click', function() {
         console.log(' << get songs by word >> ')
+        loader.show();
         $.ajax({
             url: '/getSongsByWord?word=' + word,
             data: {
@@ -28,9 +36,11 @@ $( document ).ready(function () {
                 console.log(i)
                 console.log(obj)
                 $('#allSongs').append('<p>' + obj.name + '</p>')
+                loader.hide()
             })
 
         })
+
     }, false);
 
     // range sliders

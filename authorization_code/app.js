@@ -159,6 +159,7 @@ unirest.get("https://apifort-random-word-v1.p.mashape.com/v1/generate/randomword
 .end(function (result) {
 	// var randomWord = (result.body.result).toString().length > 5 ? (result.body.result).toString() : (result.body.result).toString().slice(0,4)
 	var randomWord = (result.body.result).toString()
+
 	console.log("😈 =========== getting random word >> ", randomWord);
       // >>
       spotifyApi.searchTracks(randomWord)
