@@ -57,6 +57,14 @@ p {
     font-weight: 300;
 }
 
+h3 {
+    color: #fff;
+    font-size: 1.1em;
+    font-weight: 400;
+    margin-top: 1em;
+
+}
+
 .slider-form {
     padding: 0 10em 0 10em;
     margin-bottom: 4em;
@@ -128,4 +136,27 @@ p {
 .flat-slider.ui-slider-horizontal .ui-slider-range {
     top: 0;
     height: 2px;
+}
+
+#loader {
+    margin: 0 auto;
+
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #ed6850;
+    width: 80px;
+    height: 80px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

@@ -28,9 +28,11 @@ $( document ).ready(function () {
                 console.log(i)
                 console.log(obj)
                 $('#allSongs').append('<p>' + obj.name + '</p>')
+                loader.hide()
             })
 
         })
+
     }, false);
 
     // range sliders
