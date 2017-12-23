@@ -31,87 +31,32 @@
 				<div class="col-12 text-center slider-form">
 					<form class="mx-5">
 						<div class="form-group">
-							<p>
-								Danceability
-								<!--<label for="amt1">Dancability</label>-->
-								<!--<input type="text" id="amt1" readonly style="border:0; color:#f6931f; font-weight:bold;">-->
-							</p>
+							<p>Danceability</p>
 							<div class="flat-slider" id="dancability"></div>
 							<span class="slider-label-left">I don't feel like dancing</span>
 							<span class="slider-label-right">Let's dance!</span>
 						</div>
 
 						<div class="form-group">
-							<p>
-								Energy
-								<!--<label for="amt2">Energy:</label>-->
-								<!--<input type="text" id="amt2" readonly style="border:0; color:#f6931f; font-weight:bold;">-->
-							</p>
-
+							<p>Energy</p>
 							<div class="flat-slider" id="energy"></div>
 							<span class="slider-label-left">I'm not feeling energetic</span>
 							<span class="slider-label-right">Turn up the energy!</span>
 						</div>
 
-						<!--<div class="form-group">-->
-							<!--<p>-->
-								<!--<label for="amt3">Instrumentalness:</label>-->
-								<!--<input type="text" id="amt3" readonly style="border:0; color:#f6931f; font-weight:bold;">-->
-							<!--</p>-->
-
-							<!--<div class="flat-slider" id="instrumental"></div>-->
-						<!--</div>-->
-
-						<!--<div class="form-group">-->
-							<!--<p>-->
-								<!--<label for="amt4">Tempo:</label>-->
-								<!--<input type="text" id="amt4" readonly style="border:0; color:#f6931f; font-weight:bold;">-->
-							<!--</p>-->
-
-							<!--<div class="flat-slider" id="tempo"></div>-->
-						<!--</div>-->
-
 						<div class="form-group">
-							<p>
-								Happiness
-								<!--<label for="amt5">Valance:</label>-->
-								<!--<input type="text" id="amt5" readonly style="border:0; color:#f6931f; font-weight:bold;">-->
-							</p>
-
+							<p>Happiness</p>
 							<div class="flat-slider" id="valance"></div>
 							<span class="slider-label-left">Feeling kind of mellow</span>
 							<span class="slider-label-right">I'm in a great mood!</span>
 						</div>
 
-						<!--<div class="form-group">-->
-							<!--<label for="dance">Dancability</label><br>-->
-							<!--<input type="range" name="dance" min="0.0" max="1.0" step="0.1" id="dance">-->
-							<!--<span id="dance_value">0.5</span>-->
-						<!--</div>-->
-
-						<!--<div class="form-group">-->
-							<!--<label for="instrumental">Instrumentalness</label><br>-->
-							<!--<input type="range" name="instrumental" min="0.0" max="1.0" step="0.1" id="instrumental">-->
-							<!--<span id="instrumental_value">0.5</span>-->
-						<!--</div>-->
-
-						<!--<div class="form-group">-->
-							<!--<label for="tempo">Tempo</label><br>-->
-							<!--<input type="range" name="tempo" min="80" max="203" step="1" id="tempo">-->
-							<!--<span id="tempo_value">142</span>-->
-						<!--</div>-->
-
-						<!--<div class="form-group">-->
-							<!--<label for="valence">Valence</label><br>-->
-							<!--<input type="range" name="valence" min="0.0" max="1.0" step="0.1" id="valence">-->
-							<!--<span id="valence_value">0.5</span>-->
-						<!--</div>-->
 					</form>
 				</div>
 			</div>
-			<div>
-				Search For Word: <input type="text" name="word" placeholder="LOVE" id="word"><br>
-				<button id="getSongsByWord">Get Songs By Word</button>
+			<div class="text-center">
+				<span class="pr-3">Search For Word: </span><input type="text" name="word" placeholder="Enter a word..." id="word"><br>
+				<button id="getSongsByWord" class="btn btn-primary styled-btn my-4">Get Songs By Word</button>
 
 				<h2>ALL SONGS</h2>
 				<div id="allSongs"></div>
