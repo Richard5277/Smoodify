@@ -4,10 +4,14 @@
 $( document ).ready(function () {
 
     var loader = $("#loadContainer");
-    var isLoading = false;
+
+
+
 
 
     loader.hide();
+
+
 
 
     $("#dance").on("input change", function() { $('#dance_value')[0].innerHTML = $('#dance')[0].value });
@@ -18,7 +22,8 @@ $( document ).ready(function () {
 
     document.getElementById('getSongsByWord').addEventListener('click', function() {
         console.log(' << get songs by word >> ')
-        loader.show();
+        loader.fadeIn()
+        $("html, body").animate({ scrollTop: $(document).height()-$(window).height() });
         $.ajax({
             url: '/getSongsByWord?word=' + word,
             data: {
@@ -27,8 +32,18 @@ $( document ).ready(function () {
             $.each(JSON.parse(data), function(i, obj) {
                 console.log(i)
                 console.log(obj)
-                $('#allSongs').append('<p>' + obj.name + '</p>')
-                loader.hide()
+                loader.fadeOut(400, function() {
+
+                    $('#allSongs').append('<p>' + obj.name + '</p>').hide().fadeIn(600);
+
+                });
+                $("html, body").animate({ scrollTop: $(document).height()-$(window).height() });
+
+
+
+
+
+
             })
 
         })
