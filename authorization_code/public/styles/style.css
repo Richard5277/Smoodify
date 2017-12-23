@@ -14,6 +14,8 @@ body {
 
 span, h2 {
     color: #fff;
+    margin-top:0.3em
+    margin-bottom:0.7em;
 }
 
 #login, #loggedin {
@@ -65,7 +67,8 @@ h3 {
     color: #fff;
     font-size: 1.1em;
     font-weight: 400;
-    margin-top: 1em;
+    margin-top: 1.2em;
+    margin-bottom: 2em
 
 }
 
@@ -151,7 +154,11 @@ h3 {
     width: 80px;
     height: 80px;
     -webkit-animation: spin 2s linear infinite; /* Safari */
-    animation: spin 2s linear infinite;
+    animation: spin 2s linear infnite;
+}
+
+#loadContainer {
+    margin-top: 1.3em
 }
 
 /* Safari */
@@ -163,4 +170,8 @@ h3 {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+#getSongsByWord {
+    margin-top: 0.5em;
 }
